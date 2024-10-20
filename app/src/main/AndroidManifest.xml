@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.security.exportedcomponentapp">
+
+    <application
+        android:allowBackup="true"
+        android:label="Exported Component App"
+        android:theme="@style/Theme.AppCompat">
+
+        <!-- Exported Activity (Insecurely accessible by any app) -->
+        <activity android:name=".ExportedActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Exported Service (Insecurely accessible by any app) -->
+        <service
+            android:name=".ExportedService"
+            android:exported="true" />
+
+        <!-- Exported Content Provider (Insecurely accessible by any app) -->
+        <provider
+            android:name=".ExportedContentProvider"
+            android:authorities="com.security.exportedcomponentapp.provider"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
