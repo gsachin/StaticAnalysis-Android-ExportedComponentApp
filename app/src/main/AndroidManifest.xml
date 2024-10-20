@@ -7,30 +7,30 @@
         android:theme="@style/Theme.AppCompat">
 
         <!-- Exported Activity (Insecurely accessible by any app) -->
+        <!-- Fix: Mark android:exported as false if external access is not required -->
         <activity android:name=".ExportedActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:exported="false"> <!-- Now non-exported -->
         </activity>
 
         <!-- Exported Service (Insecurely accessible by any app) -->
+        <!-- Fix: Mark android:exported as false if the service does not need to be accessed externally -->
         <service
             android:name=".ExportedService"
-            android:exported="true" />
+            android:exported="false" /> <!-- Now non-exported -->
 
         <!-- Exported Content Provider (Insecurely accessible by any app) -->
+        <!-- Fix: Mark android:exported as false unless external access is needed -->
         <provider
             android:name=".ExportedContentProvider"
             android:authorities="com.security.exportedcomponentapp.provider"
-            android:exported="true" />
+            android:exported="false" /> <!-- Now non-exported -->
+
+        <!-- MainActivity: Should remain exported if it's the entry point for the app -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
